@@ -9,9 +9,11 @@ on region enter:
         if size of {1v1::*} = 2:
             make console execute "cm reset 1v1wall-place"
             broadcast "<##74FFE0>&l1v1&f: &fThe <##74FFE0>1v1 room &fhas started! &7&o((%{1v1::*}%))"
+        else if size of {1v1::*} is not equal to 2:
+           stop
 
 on death of a player:
-    if {1v1:**} contains victim:
+    if {1v1::*} contains victim:
         remove victim from {1v1::*}
         broadcast "<##74FFE0>&l1v1&f: &c%victim% &fhas died while in the <##74FFE0>1v1 room&f!"
         wait 15 seconds
@@ -19,7 +21,7 @@ on death of a player:
 
 on region leave:
     if event-region is "1v1":
-        remove player from {1v1:**}
+        remove player from {1v1::*}
         broadcast "<##74FFE0>&l1v1&f: <##74FFE0>%player% &fhas &cleft&f the <##74FFE0>1v1 room&f!"
 
 on quit:
